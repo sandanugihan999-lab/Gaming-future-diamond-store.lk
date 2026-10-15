@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#031230">
+<title>Gaming Future – Game Top Up Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#031230;--p1:#0d2150;--p2:#14307a;--ln:#27479a;--cy:#19d3ff;--bl:#4aa8ff;--tx:#eaf3ff;--mu:#93a9d6;--ok:#2fdc8f;--er:#ff7b93;
+--d:"Exo 2","Trebuchet MS",system-ui,sans-serif;--b:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;min-height:100vh;color:var(--tx);font:15px/1.6 var(--b);background:radial-gradient(800px 480px at 50% -100px,#0f3c9a,transparent 70%),linear-gradient(180deg,#041a45,#020a1f) fixed}
+h1,h2,h3,.d{font-family:var(--d)}
+button{font:inherit;color:inherit;cursor:pointer;border:0}
+:focus-visible{outline:2px solid var(--cy);outline-offset:3px}
+.hdr{position:sticky;top:10px;z-index:30;margin:10px auto 0;max-width:900px;width:calc(100% - 20px);display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border-radius:20px;border:1px solid var(--ln);background:rgba(5,20,56,.88);backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.brand{display:flex;align-items:center;gap:10px;background:none;padding:0}
+.brand svg{width:40px;height:40px}
+.brand b{font:800 17px var(--d);letter-spacing:.06em}
+.cartb{position:relative;display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:99px;background:var(--p2);border:1px solid var(--ln);font-weight:600;font-size:14px}
+.cartb i{font-style:normal;min-width:22px;height:22px;border-radius:99px;background:var(--cy);color:#02142e;display:grid;place-items:center;font-size:12px;font-weight:700;padding:0 6px}
+main{max-width:900px;margin:0 auto;padding:26px 16px 130px}
+.view{display:none}.view.on{display:block}
+.center{text-align:center}
+h1{font-size:clamp(26px,6.4vw,40px);line-height:1.15;margin:12px 0 8px;font-weight:800}
+h1 em{font-style:normal;background:linear-gradient(90deg,#9fb2d4,var(--cy));-webkit-background-clip:text;background-clip:text;color:transparent}
+.bar{width:140px;height:4px;border-radius:9px;margin:10px auto 14px;background:linear-gradient(90deg,var(--cy),transparent)}
+.sub{color:var(--mu);max-width:42ch;margin:0 auto 26px}
+.games{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:560px;margin:0 auto}
+.game{padding:14px;border-radius:20px;border:1px solid var(--ln);background:linear-gradient(180deg,var(--p2),var(--p1));text-align:center}
+.game h3{margin:0 0 10px;font-size:16px}
+.gart{position:relative;aspect-ratio:1;border-radius:14px;display:grid;place-items:center;overflow:hidden;margin-bottom:12px;font:800 44px var(--d);color:#fff;text-shadow:0 4px 18px rgba(0,0,0,.4)}
+.tag{position:absolute;top:8px;right:8px;font:700 11px var(--b);letter-spacing:.06em;padding:3px 10px;border-radius:99px;background:rgba(47,220,143,.92);color:#032b1a;text-shadow:none}
+.tag.off{background:rgba(255,255,255,.82);color:#1a2b52}
+.cta{display:block;width:100%;padding:13px;border-radius:13px;font:800 15px var(--d);letter-spacing:.08em;color:#02142e;background:linear-gradient(90deg,var(--bl),var(--cy));box-shadow:0 8px 22px rgba(25,211,255,.28);text-align:center}
+.cta[disabled]{opacity:.45;box-shadow:none;cursor:not-allowed}
+.game.off{opacity:.8}
+.back{background:none;color:var(--cy);font-weight:600;padding:4px 0;margin-bottom:12px}
+.card{border:1px solid var(--ln);border-radius:22px;padding:20px;margin-bottom:16px;background:linear-gradient(180deg,var(--p2),var(--p1))}
+.ghead{display:flex;align-items:center;gap:14px}
+.ghead .gart{width:76px;height:76px;aspect-ratio:auto;font-size:28px;margin:0;border-radius:18px;flex:none}
+.ghead h2{margin:0;font-size:28px;color:var(--cy)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{padding:5px 14px;border-radius:99px;border:1px solid var(--ln);background:rgba(3,18,48,.55);color:var(--mu);font-size:13px}
+.steps{display:flex;align-items:center;gap:8px;padding:14px 18px;border-radius:99px;border:1px solid var(--ln);background:rgba(3,14,38,.6);margin-bottom:16px}
+.steps span{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:700 14px var(--d);background:var(--p2);color:var(--mu);flex:none}
+.steps span.on{background:var(--cy);color:#02142e;box-shadow:0 0 0 5px rgba(25,211,255,.18)}
+.steps hr{flex:1;border:0;height:2px;background:var(--ln);margin:0}
+.steps hr.on{background:var(--cy)}
+.sh{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-size:21px}
+.sh b{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--cy);color:#02142e;font-size:16px}
+.field{display:flex;align-items:center;gap:8px;padding:6px 6px 6px 16px;border-radius:16px;border:1px solid var(--ln);background:rgba(3,14,38,.7)}
+.field input{flex:1;min-width:0;background:none;border:0;color:var(--tx);font:16px var(--b);padding:10px 0}
+.field input:focus{outline:none}
+.field:focus-within{border-color:var(--cy);box-shadow:0 0 0 3px rgba(25,211,255,.18)}
+.paste{padding:9px 14px;border-radius:12px;background:var(--p2);border:1px solid var(--ln);font-weight:600;font-size:14px}
+.msg{min-height:1.3em;margin:10px 2px 0;font-size:14px}.msg.er{color:var(--er)}.msg.ok{color:var(--ok)}
+.hint{display:inline-block;padding:6px 16px;border-radius:99px;border:1px solid var(--ln);color:var(--mu);font-size:14px;margin-bottom:16px}
+.gh{margin:22px 0 12px;font-size:18px;color:var(--cy)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.prod{padding:12px;border-radius:20px;border:1px solid var(--ln);background:rgba(20,48,122,.55)}
+.prod.has{border-color:var(--cy);box-shadow:0 0 0 1px var(--cy)}
+.part{height:130px;border-radius:14px;border:1px solid var(--ln);display:grid;place-items:center;margin-bottom:12px;background:linear-gradient(160deg,var(--c1),var(--c2));color:#fff;font:800 30px var(--d);text-shadow:0 3px 14px rgba(0,0,0,.45);position:relative;overflow:hidden}
+.part small{position:absolute;bottom:8px;left:0;right:0;text-align:center;font:600 11px var(--b);letter-spacing:.08em;opacity:.85}
+.prod h4{margin:0 0 10px;text-align:center;font:600 15px var(--b);color:#cfe0ff}
+.price{padding:8px;border-radius:14px;border:1px solid var(--ln);background:rgba(3,14,38,.55);text-align:center;font:800 24px var(--d);margin-bottom:10px}
+.price small{color:var(--cy);font-size:14px;margin-right:6px}
+.qty{display:flex;align-items:center;justify-content:space-between;padding:6px;border-radius:99px;background:#020d26;border:1px solid var(--ln)}
+.qty button{width:42px;height:42px;border-radius:50%;font-size:22px;line-height:1}
+.qty .m{background:var(--p2);color:var(--mu)}.qty .p{background:var(--cy);color:#02142e}
+.qty output{font:800 18px var(--d)}
+.sum{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--ln);font-size:14px}
+.sum:last-of-type{border:0}
+.tot{display:flex;justify-content:space-between;align-items:center;margin:14px 0;font:800 24px var(--d)}
+.empty{color:var(--mu);margin:0 0 8px}
+.pay{border:1px solid var(--ln);border-left:3px solid var(--cy);border-radius:14px;background:rgba(3,14,38,.6);margin:12px 0 16px}
+.pay div{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid var(--ln);font-size:14px}
+.pay div:last-child{border:0}.pay span{color:var(--mu)}
+.pay b{display:flex;align-items:center;gap:10px;font-weight:600;word-break:break-all;text-align:right}
+.cp{padding:5px 11px;border-radius:9px;border:1px solid var(--ln);background:var(--p2);font-size:12px;font-weight:600}
+.done{display:none;border:1px solid var(--ok);background:rgba(47,220,143,.08);border-radius:18px;padding:16px;margin-top:14px}
+.done.on{display:block}
+.done ol{margin:8px 0 0;padding-left:20px;color:var(--mu)}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:25;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0));background:rgba(3,14,40,.94);backdrop-filter:blur(10px);border-top:1px solid var(--ln);display:none}
+.dock.on{display:block}
+.dock div{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.dock small{display:block;color:var(--mu);font-size:12px;line-height:1.2}.dock b{font:800 22px var(--d)}
+.dock .cta{width:auto;padding:12px 26px}
+.wa{position:fixed;right:16px;bottom:calc(86px + env(safe-area-inset-bottom,0));z-index:24;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#25d366,#128c7e);box-shadow:0 8px 24px rgba(37,211,102,.4)}
+.wa svg{width:30px;height:30px}
+footer{text-align:center;color:var(--mu);font-size:13px;padding:20px 16px 110px;border-top:1px solid var(--ln)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a6bff"/><stop offset="1" stop-color="#19d3ff"/></linearGradient>
+<linearGradient id="gm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d4faff"/><stop offset="1" stop-color="#2aa8e6"/></linearGradient>
+<symbol id="logo" viewBox="0 0 64 64"><polygon points="32,3 57,17.5 57,46.5 32,61 7,46.5 7,17.5" fill="url(#lg)" stroke="#d6f6ff" stroke-width="2" stroke-linejoin="round"/><path d="M44 21.5A15 15 0 1 0 47 34H37" fill="none" stroke="#fff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/><polygon points="33,22 26,33.5 31,33.5 28,43 38,31 33,31 36,22" fill="#ffd166" stroke="#06265c" stroke-width="1" stroke-linejoin="round"/></symbol>
+<symbol id="gem" viewBox="0 0 48 44"><polygon points="12,2 36,2 46,16 24,42 2,16" fill="url(#gm)" stroke="#e6fbff" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 16h44M12 2l-4 14 16 26M36 2l4 14-16 26M16 16l8-14 8 14" fill="none" stroke="#e6fbff" stroke-opacity=".7" stroke-width="1.2"/></symbol>
+</defs></svg>
+
+<header class="hdr">
+  <button class="brand" id="home" aria-label="Home"><svg aria-hidden="true"><use href="#logo"/></svg><b>GAMING FUTURE</b></button>
+  <button class="cartb" id="cartTop" aria-label="Cart">Cart <i id="cnt">0</i></button>
+</header>
+
+<main>
+  <section class="view on center" id="vHome">
+    <h1>Select your game <em>to top up</em></h1>
+    <div class="bar"></div>
+    <p class="sub">Pick a game, enter your player ID, add packs to your cart and send the order on WhatsApp.</p>
+    <div class="games" id="games"></div>
+  </section>
+
+  <section class="view" id="vGame">
+    <button class="back" id="back">‹ All games</button>
+    <div class="card">
+      <div class="ghead"><div class="gart" id="gIco"></div><h2 id="gName"></h2></div>
+      <div class="chips"><span class="chip">Pay by bank transfer</span><span class="chip">Send slip on WhatsApp</span><span class="chip">We never ask for your password</span></div>
+    </div>
+    <div class="steps" aria-hidden="true"><span class="on" id="s1">1</span><hr id="h1"><span id="s2">2</span><hr id="h2"><span id="s3">3</span></div>
+
+    <div class="card">
+      <h2 class="sh"><b>1</b>Enter your player ID</h2>
+      <div class="field"><input id="uid" inputmode="numeric" maxlength="15" placeholder="Enter your Player ID / UID" autocomplete="off" aria-label="Player ID"><button class="paste" id="paste" type="button">Paste</button></div>
+      <p class="msg" id="idMsg" aria-live="polite"></p>
+      <button class="cta" id="verify" type="button">Confirm ID</button>
+    </div>
+
+    <div class="card">
+      <h2 class="sh"><b>2</b>Select package</h2>
+      <span class="hint">Tap + to add to cart</span>
+      <div id="groups"></div>
+    </div>
+
+    <div class="card" id="checkout">
+      <h2 class="sh"><b>3</b>Checkout</h2>
+      <div id="lines"></div>
+      <div class="tot"><span>Total</span><span id="grand"></span></div>
+      <p style="margin:0;color:var(--mu)">Send the total to this account, then keep the slip for WhatsApp.</p>
+      <div class="pay" id="pay"></div>
+      <p class="msg" id="coMsg" aria-live="polite"></p>
+      <button class="cta" id="send" type="button">Send order on WhatsApp</button>
+      <div class="done" id="done" role="status"><b>Order <span class="d" id="code" style="color:var(--ok)"></span> is ready.</b>
+        <ol><li>Attach your payment slip in the WhatsApp chat and send it.</li><li>We top up your account after we confirm the payment.</li></ol></div>
+    </div>
+  </section>
+</main>
+
+<footer>© <span id="yr"></span> Gaming Future Top Up Center</footer>
+
+<div class="dock" id="dock"><div><span><small id="dkN"></small><b id="dkT"></b></span><button class="cta" id="dkGo" type="button">Checkout</button></div></div>
+<a class="wa" id="wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp support"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.5L3 21z"/><path d="M9 8.5c0 3.5 3 6.500 6.500 6.500l1-1.500-2-1-1 .8a4 4 0 0 1-2-2l.8-1-1-2L9 8.500z" fill="#fff" stroke="none"/></svg></a>
+
+<script>
+/* ===== SETTINGS: edit these ===== */
+const CONFIG = {
+  whatsapp: '94XXXXXXXXX',        // country code first, no + (e.g. 94771234567)
+  cur: 'Rs.',
+  pay: [['Bank', 'YOUR BANK'], ['Account name', 'YOUR NAME'], ['Account number', '0000000000'], ['Branch', 'YOUR BRANCH']],
+  games: [   // on:true opens the pack list; on:false shows "Soon"
+    { name: 'Free Fire', short: 'FF', on: true, c: ['#ff8a3d', '#c2185b'] },
+    { name: 'PUBG Mobile', short: 'PM', on: false, c: ['#4f8cff', '#1c2f6e'] },
+    { name: 'Blood Strike', short: 'BS', on: false, c: ['#19d3ff', '#7a1230'] }
+  ],
+  groups: [  // [name, price] – prices are placeholders, change them
+    { title: 'Diamonds', kind: 'gem', items: [['100 Diamonds', 350], ['310 Diamonds', 1000], ['520 Diamonds', 1650], ['1080 Diamonds', 3300], ['2200 Diamonds', 6500]] },
+    { title: 'Memberships', kind: 'pass', items: [['Weekly Lite Membership', 130], ['Weekly Membership', 585], ['Monthly Membership', 2950], ['VIP Membership', 3535], ['Super VIP Membership', 5290]] },
+    { title: 'Level Up Pass', kind: 'lvl', items: [['Level Up Pass (Level 06)', 120], ['Level Up Pass (Level 10)', 250], ['Level Up Pass (Level 20)', 250], ['Level Up Pass (Level 25)', 250]] }
+  ]
+};
+/* ================================= */
+const $ = id => document.getElementById(id);
+const money = n => CONFIG.cur + ' ' + Number(n).toLocaleString('en-US');
+const waBase = 'https://wa.me/' + CONFIG.whatsapp.replace(/\D/g, '');
+const cart = {}, items = [];
+let idOk = false;
+$('yr').textContent = new Date().getFullYear(); $('wa').href = waBase;
+
+// game cards
+const gradients = (c) => 'linear-gradient(150deg,' + c[0] + ',' + c[1] + ')';
+CONFIG.games.forEach((g, i) => {
+  const d = document.createElement('div'); d.className = 'game' + (g.on ? '' : ' off');
+  d.innerHTML = '<h3></h3><div class="gart" style="background:' + gradients(g.c) + '">' + g.short + '<span class="tag' + (g.on ? '' : ' off') + '">' + (g.on ? '● ACTIVE' : 'SOON') + '</span></div><button class="cta" type="button"' + (g.on ? '' : ' disabled') + '>' + (g.on ? 'TOP UP' : 'COMING SOON') + '</button>';
+  d.querySelector('h3').textContent = g.name;
+  if (g.on) d.querySelector('button').onclick = () => openGame(g);
+  $('games').appendChild(d);
+});
+
+// product art (original, no game artwork)
+const tints = [['#2a6bff', '#0b1f55'], ['#8b3dff', '#2b0f66'], ['#ffb02e', '#8a3a05'], ['#d946ef', '#4a0f66'], ['#f59e0b', '#7c2d12']];
+function art(kind, name, i) {
+  const t = tints[i % tints.length];
+  let inner = '';
+  if (kind === 'gem') inner = '<svg width="64" height="58" viewBox="0 0 48 44" aria-hidden="true"><use href="#gem"/></svg><small>' + name.split(' ')[0] + ' DIAMONDS</small>';
+  else if (kind === 'pass') inner = name.replace(/ Membership/, '').split(' ').map(w => w[0]).join('') + '<small>MEMBERSHIP</small>';
+  else inner = 'LV ' + (name.match(/\d+/) || [''])[0] + '<small>LEVEL UP PASS</small>';
+  return '<div class="part" style="--c1:' + t[0] + ';--c2:' + t[1] + '">' + inner + '</div>';
+}
+
+// package list
+CONFIG.groups.forEach(g => {
+  const h = document.createElement('h3'); h.className = 'gh'; h.textContent = g.title; $('groups').appendChild(h);
+  const grid = document.createElement('div'); grid.className = 'pgrid'; $('groups').appendChild(grid);
+  g.items.forEach(([name, price], i) => {
+    const k = items.length; items.push({ name, price });
+    const d = document.createElement('div'); d.className = 'prod'; d.id = 'p' + k;
+    d.innerHTML = art(g.kind, name, i) + '<h4></h4><div class="price"><small>' + CONFIG.cur + '</small>' + Number(price).toLocaleString('en-US') + '</div>' +
+      '<div class="qty"><button class="m" type="button" aria-label="Remove one">−</button><output>0</output><button class="p" type="button" aria-label="Add one">+</button></div>';
+    d.querySelector('h4').textContent = name;
+    d.querySelector('.m').onclick = () => setQty(k, -1);
+    d.querySelector('.p').onclick = () => setQty(k, 1);
+    grid.appendChild(d);
+  });
+});
+function setQty(k, d) {
+  const q = Math.max(0, Math.min(20, (cart[k] || 0) + d)); if (q) cart[k] = q; else delete cart[k];
+  const el = $('p' + k); el.querySelector('output').textContent = q; el.classList.toggle('has', q > 0); update();
+}
+function update() {
+  const ks = Object.keys(cart); let n = 0, t = 0;
+  $('lines').innerHTML = ks.length ? '' : '<p class="empty">Your cart is empty. Add a pack in step 2.</p>';
+  ks.forEach(k => { const it = items[k], q = cart[k]; n += q; t += q * it.price;
+    const r = document.createElement('div'); r.className = 'sum';
+    r.innerHTML = '<span></span><b>' + money(q * it.price) + '</b>'; r.firstChild.textContent = q + ' × ' + it.name; $('lines').appendChild(r); });
+  $('cnt').textContent = n; $('grand').textContent = money(t);
+  $('dkN').textContent = n + (n === 1 ? ' item' : ' items'); $('dkT').textContent = money(t);
+  $('dock').classList.toggle('on', n > 0 && $('vGame').classList.contains('on'));
+  steps();
+}
+function steps() {
+  const has = Object.keys(cart).length > 0;
+  $('s1').className = 'on'; $('h1').className = idOk ? 'on' : ''; $('s2').className = idOk ? 'on' : '';
+  $('h2').className = idOk && has ? 'on' : ''; $('s3').className = idOk && has ? 'on' : '';
+}
+
+// views
+function openGame(g) {
+  $('gName').textContent = g.name; $('gIco').style.background = gradients(g.c); $('gIco').textContent = g.short;
+  $('vHome').classList.remove('on'); $('vGame').classList.add('on'); window.scrollTo(0, 0); update();
+}
+function goHome() { $('vGame').classList.remove('on'); $('vHome').classList.add('on'); $('dock').classList.remove('on'); window.scrollTo(0, 0); }
+$('home').onclick = goHome; $('back').onclick = goHome;
+$('cartTop').onclick = () => { if ($('vGame').classList.contains('on')) $('checkout').scrollIntoView(); };
+$('dkGo').onclick = () => $('checkout').scrollIntoView();
+
+// player ID
+try { const s = localStorage.getItem('gf_uid'); if (s) $('uid').value = s; } catch (e) {}
+$('uid').addEventListener('input', function () { this.value = this.value.replace(/\D/g, ''); idOk = false; $('idMsg').textContent = ''; steps(); });
+$('paste').onclick = async () => { try { $('uid').value = (await navigator.clipboard.readText()).replace(/\D/g, '').slice(0, 15); $('uid').dispatchEvent(new Event('input')); } catch (e) { $('idMsg').className = 'msg er'; $('idMsg').textContent = 'Paste is blocked here. Long-press the box and paste.'; } };
+function confirmId() {
+  const u = $('uid').value.trim();
+  if (!/^\d{5,15}$/.test(u)) { idOk = false; $('idMsg').className = 'msg er'; $('idMsg').textContent = 'Enter your player ID using 5 to 15 digits.'; steps(); return false; }
+  idOk = true; try { localStorage.setItem('gf_uid', u); } catch (e) {}
+  $('idMsg').className = 'msg ok'; $('idMsg').textContent = 'ID ' + u + ' saved. Double-check the number before you order.'; steps(); return true;
+}
+$('verify').onclick = confirmId;
+
+// payment rows
+CONFIG.pay.forEach(([k, v]) => {
+  const r = document.createElement('div'); r.innerHTML = '<span></span><b><em style="font-style:normal"></em></b>';
+  r.firstChild.textContent = k; r.querySelector('em').textContent = v;
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'cp'; b.textContent = 'Copy'; b.setAttribute('aria-label', 'Copy ' + k);
+  b.onclick = async () => { try { await navigator.clipboard.writeText(v); b.textContent = 'Copied'; setTimeout(() => b.textContent = 'Copy', 1400); } catch (e) { b.textContent = 'Hold to copy'; } };
+  r.querySelector('b').appendChild(b); $('pay').appendChild(r);
+});
+
+// send order
+$('send').onclick = () => {
+  const m = $('coMsg'); m.className = 'msg er'; m.textContent = '';
+  if (!confirmId()) { m.textContent = 'Confirm your player ID in step 1 first.'; $('uid').scrollIntoView({ block: 'center' }); return; }
+  const ks = Object.keys(cart);
+  if (!ks.length) { m.textContent = 'Add at least one pack in step 2.'; return; }
+  if (/X/i.test(CONFIG.whatsapp)) { m.textContent = 'Shop setup: add your WhatsApp number in the SETTINGS block of this file.'; return; }
+  let t = 0; const lines = ks.map(k => { t += cart[k] * items[k].price; return '• ' + cart[k] + ' x ' + items[k].name + ' – ' + money(cart[k] * items[k].price); });
+  const code = 'GF' + Array.from(crypto.getRandomValues(new Uint8Array(3)), b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+  const text = ['New top up order ' + code, '', 'Game: ' + $('gName').textContent, 'Player ID: ' + $('uid').value.trim(), '', ...lines, '', 'Total: ' + money(t), '', 'I have paid by bank transfer. Payment slip attached.'].join('\n');
+  $('code').textContent = code; $('done').classList.add('on'); m.textContent = '';
+  window.open(waBase + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+};
+update();
+</script>
+</body>
+</html>
